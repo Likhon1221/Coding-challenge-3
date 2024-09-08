@@ -45,3 +45,20 @@ function findTopAndBottomPerformers(salesPeople) {
   }
   return {topPerformer: Object.assign({}, topPerformer), bottomPerformer: Object.assign({}, bottomPerformer)};
 }
+
+// 4. Combine Functions to Generate a Performance Report
+
+function generatePerformanceReport(salesData) {
+	var salesPeople = [];
+  for (let i = 0; i < salesData.length; i++) {  
+  	let avgSales = calculateAverageSales(salesData[i].sales);
+    let perfRating = determinePerformanceRating(avgSales);   
+    let totalSales = 0;
+    for (let j = 0; j < salesData[i].sales.length; j++) {
+    	totalSales += salesData[i].sales[j];
+    }
+    salesPeople.push({name: salesData[i].name, sales: salesData[i].sales, totalSales: totalSales, avgSales: avgSales, perfRating: perfRating});
+  }
+  var performers = findTopAndBottomPerformers(salesPeople);
+  return {salesPeople: salesPeople, topPerformer: performers.topPerformer, bottomPerformer: performers.bottomPerformer}; 
+}
