@@ -24,3 +24,24 @@ function determinePerformanceRating(averageSales) {
   	return "Needs Improvement";
   }
 }
+
+// 3. Create a Function to Identify Top and Bottom Performers
+
+function findTopAndBottomPerformers(salesPeople) {
+	var topPerformer;
+  var bottomPerformer;
+  
+  var max = -1;
+  var min = 99999999;
+  for (let i = 0; i < salesPeople.length; i++) {  	
+    if (salesPeople[i].totalSales > max) {
+    	topPerformer = salesPeople[i];
+      max = salesPeople[i].totalSales ;
+    }
+    if (salesPeople[i].totalSales < min) {
+    	bottomPerformer = salesPeople[i];
+      min = salesPeople[i].totalSales;
+    }
+  }
+  return {topPerformer: Object.assign({}, topPerformer), bottomPerformer: Object.assign({}, bottomPerformer)};
+}
